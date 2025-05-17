@@ -6,12 +6,12 @@
 
 ## Установка
 
-### из репозитория
+### Из репозитория
 ```bash
 pip install https://github.com/Simsi/HarmonicDetector --branch develop
 ```
 
-### из исходников
+### Из исходников
 ```bash
 git clone https://github.com/Simsi/HarmonicDetector
 cd HarmonicDetector
