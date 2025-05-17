@@ -5,10 +5,13 @@
 Алгоритм поиска устойчивых во времени высокоамплитудных частотных компонент сигнала.
 
 ## Установка
+
 ### из репозитория
 ```bash
 pip install https://github.com/Simsi/HarmonicDetector --branch develop
 ```
+
+### из исходников
 ```bash
 git clone https://github.com/Simsi/HarmonicDetector
 cd HarmonicDetector
