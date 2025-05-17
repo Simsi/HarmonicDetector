@@ -8,7 +8,7 @@
 
 ### Из репозитория
 ```bash
-pip install https://github.com/Simsi/HarmonicDetector --branch develop
+pip install git+https://github.com/Simsi/HarmonicDetector.git@develop
 ```
 
 ### Из исходников
