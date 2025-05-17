@@ -75,15 +75,16 @@ from HarmonicDetector import HarmonicDetector
 sig = np.zeros((3, 5000))
 
 # Определение ваших параметров
-h_bins            = 5
-Q_thr             = 2.0
-min_duration      = 0.5        # сек
-nperseg           = fs
-noverlap          = int(fs * 0.95)
-height_factor     = 1.0
-prominence_factor = 1.0
-min_sep_hz        = 10.0
-merge_jitter      = int(fs * 0.01)      # в отсчётах
+fs = 500
+h_bins = 5
+Q_thr = 5.0
+min_sep_hz = 3
+height_fact = 2.0
+prom_fact = 2.0
+nperseg = fs
+noverlap = int(fs * 0.95)
+min_duration = 3
+merge_jitter_length = fs * 0.01
 
 # обнаружение статическим методом
 static_preds = HarmonicDetector.detect_static(
