@@ -24,7 +24,7 @@ prom_fact = 2.0 # сколько σ над медианой для prominence <�
 nperseg = fs # длина окна FFT <br>
 noverlap = int(fs * 0.95) # перекрытие окна FFT <br>
 min_duration = 3 # минимальная длина в секундах сигнала гармонического сигнала (в секундах) <br>
-merge_jitter_length = fs * 0.01 # допустимый разрыв между обнаруженными интервалами для их объединения в один (в точках) <br>
+merge_jitter_length = fs * 0.01 # допустимый разрыв между обнаруженными интервалами для их объединения в один (в отчётах) <br>
 
 ### Входные данные алгоритма
 
@@ -47,9 +47,60 @@ merge_jitter_length = fs * 0.01 # допустимый разрыв между �
 
 ## Тестирование
 
+### Готовые скрипты
 Скрипты тестирования в папке examples.
 Для тестирования без подключения к seiscomp серверу через seedlink используется quick_test.py. <br>
 В этом скрипте генерируется сигнал фиксированной длины искусственно со случайными частотными компонентами. <br>
 
 Для тестирования с подключением к seiscomp серверу через seedlink используется seedlink_example.py
+
+### добавление в свой код
+``` python
+import numpy as np
+from obspy import UTCDateTime
+from HarmonicDetector import HarmonicDetector
+
+# ... Ваш трёхканальный сигнал 
+sig = np.zeros((3, 5000))
+
+# Определение ваших параметров
+h_bins            = 5
+Q_thr             = 2.0
+min_duration      = 0.5        # сек
+nperseg           = 256
+noverlap          = 128
+height_factor     = 1.0
+prominence_factor = 1.0
+min_sep_hz        = 10.0
+merge_jitter      = 10        # в отсчётах
+
+# обнаружение статическим методом
+static_preds = HarmonicDetector.detect_static(
+    signal_3ch=signal3,
+    start_time=start_time,
+    fs=fs,
+    h_bins=h_bins,
+    Q_threshold=Q_thr,
+    min_duration=min_duration,
+    nperseg=nperseg,
+    noverlap=noverlap,
+    height_factor=height_factor,
+    prominence_factor=prominence_factor,
+    min_sep_hz=min_sep_hz,
+    merge_jitter=merge_jitter
+)
+
+if not static_preds:
+   print("  (none)")
+else:
+   for freq, t0, t1 in static_preds:
+       print(f"  {freq:.1f} Hz: {t0.isoformat()} – {t1.isoformat()}")
+
+# Вывод следующего вида:
+# >>> Results from static method detect_static:
+#   90.0 Hz: 2025-05-17T04:44:25.158533 – 2025-05-17T04:44:30.208533
+
+
+```
+
 
