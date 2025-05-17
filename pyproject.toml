@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "HarmonicDetector"
+version = "0.1.0"
+description = "Детекция гармонических источников"
+readme = "README.md"
+authors = [
+  { name="Илясов Семён Алексеевич", email="ilyasov.2222@mail.ru" }
+]
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.20",
+  "scipy>=1.6.0",
+  "obspy>=1.2"
+]
+
+[project.urls]
+Source = "https://github.com/Simsi/HarmonicDetector"
