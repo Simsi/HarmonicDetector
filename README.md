@@ -77,12 +77,12 @@ sig = np.zeros((3, 5000))
 h_bins            = 5
 Q_thr             = 2.0
 min_duration      = 0.5        # сек
-nperseg           = 256
-noverlap          = 128
+nperseg           = fs
+noverlap          = int(fs * 0.95)
 height_factor     = 1.0
 prominence_factor = 1.0
 min_sep_hz        = 10.0
-merge_jitter      = 10        # в отсчётах
+merge_jitter      = int(fs * 0.01)      # в отсчётах
 
 # обнаружение статическим методом
 static_preds = HarmonicDetector.detect_static(
