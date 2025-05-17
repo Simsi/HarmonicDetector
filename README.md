@@ -13,7 +13,7 @@ pip install git+https://github.com/Simsi/HarmonicDetector.git@develop
 
 ### Из исходников
 ```bash
-git clone https://github.com/Simsi/HarmonicDetector
+git clone https://github.com/Simsi/HarmonicDetector --branch develop
 cd HarmonicDetector
 pip install .
 ```
